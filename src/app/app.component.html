@@ -1,0 +1,19 @@
+<h1>WAF GUI</h1>
+
+<p>
+  Requested Data products, which are labeled with any of the labels below, will be denied to leave the Information Domain by this Web Application Firewall.
+</p>
+
+<mat-form-field class="example-chip-list">
+  <mat-label>Guarding Labels</mat-label>
+  <mat-chip-grid #chipGrid aria-label="Label selection">
+    <mat-chip-row *ngFor="let label of currentLabels" (removed)="remove(label)">
+      {{label}}
+      <button matChipRemove [attr.aria-label]="'remove ' + label">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+  </mat-chip-grid>
+  <input placeholder="New Label..." [formControl]="labelInputCtrl" [matChipInputFor]="chipGrid"
+    (matChipInputTokenEnd)="add($event)"/>
+</mat-form-field>
